@@ -10,32 +10,63 @@ world_cup_news
 
 # enter your solutions inside the methods
 def goal(message)
-
+  message + message
 end
 
 def generate_an_array_of_teams(teams)
-
+  teams.split(', ')
 end
 
 def number_of_teams(teams)
-
+  arr = teams.split(', ')
+  arr.length
 end
 
 def return_australia(teams)
-
+  arr = teams.split(', ')
+  arr[6]
 end
 
 def starts_with_C(teams)
-
+  return_arr = []
+  arr = teams.split(', ')
+  arr.each do |team|
+    if team[0] == 'C'
+      return_arr.push(team)
+    end
+  end
+  return_arr
 end
 
-def block_string_to_single_line(block_string)
+# def block_string_to_single_line(block_string)
+#   block_string = block_string[2,96]
+#   block_string = ((block_string.tr("\n ", "")).split(',')).join(" ")
+# end
 
+def block_string_to_single_line(block_string)
+  block_string = block_string[2,96]
+  block_string = ((block_string.tr("\n ", "")).tr(",", ' '))
 end
 
 def capitalize_every_third_word(block_string)
-
+  block_string = block_string[2,96]
+  block_string = ((block_string.tr("\n ", "")).split(','))
+  word_counter = 0
+  new_arr = []
+  block_string.each do |word|
+    if word_counter >= 4 || word_counter == 0
+      word_counter = 1
+      word.capitalize!
+    else
+      word.downcase!
+    end
+    word_counter += 1
+    new_arr.push(word)
+  end
+  new_arr.join(' ')
 end
+
+p block_string_to_single_line(long_string)
 
 check("goal method", goal(goal_message) == "GOOOOOOOAL!!!!GOOOOOOOAL!!!!")
 check("generate_an_array_of_teams method",
